@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    HLS Live Stream
+                    HLS Demo
                 </div>                
             </div>
         </div>
