@@ -19,6 +19,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+
     /**
      * Generates new jwt token
      * 
@@ -53,5 +54,5 @@ class HomeController extends Controller
             Cookie::queue('jwt', $jwt);
         }
         return view('home');
-    }
+    }  
 }
