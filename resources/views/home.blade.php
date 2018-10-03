@@ -39,7 +39,7 @@
                 sources: [
                     { 
                         type: "application/x-mpegurl", 
-                        src: "http://130.185.77.84.m3u8" 
+                        src: "http://130.185.77.84/playlist.m3u8" 
                     }
                 ]
             }
