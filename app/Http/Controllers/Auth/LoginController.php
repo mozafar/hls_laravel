@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Cookie;
-use \Firebase\JWT\JWT;
-use Carbon\Carbon;
+// use \Firebase\JWT\JWT;
 
 class LoginController extends Controller
 {
@@ -39,44 +38,6 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-    }
-
-    /**
-     * Generates new jwt token
-     * 
-     * @param  mixed  $user
-     * @return string 
-     */
-    protected function getToken($user) 
-    {
-        $key = 's3cr3t';
-        $token = array(
-            "iss" => "parspack",
-            "sub" => "hls",
-            "aud" => "users",
-            "iat" => time(),
-            "exp" => time() + (24 * 60 * 60),
-            "uid" => $user->id
-        );
-        
-        $jwt = JWT::encode($token, $key);
-        return $jwt;
-    }    
-
-    /**
-     * Send the response after the user was authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    protected function sendLoginResponse(Request $request)
-    {
-        $request->session()->regenerate();
-        $jwt = $this->getToken($this->guard()->user());
-        $this->clearLoginAttempts($request);
-        Cookie::queue('jwt', $jwt);
-        return $this->authenticated($request, $this->guard()->user())
-            ?: redirect()->intended($this->redirectPath());
     }
 
     /**
